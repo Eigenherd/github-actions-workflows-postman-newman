@@ -81,8 +81,7 @@ jobs:
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }} \
           --reporter-htmlextra-export ${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }} \
-      - run: ls -la $PWD
-      - run: echo "$PWD"
+      - run: ls -la
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
