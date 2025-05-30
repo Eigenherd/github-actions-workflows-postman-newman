@@ -84,8 +84,7 @@ jobs:
       - run: echo ${{ github.workspace }}
       - run: ls -la ${{ github.workspace }}
       - run: ls -lah /github/workspace
-      - run: echo ${{ github.workflow }}
-      - run: ls -la ${{ github.workflow }}
+      - run: ls -lah /github/home
       #- run: cat ${{ github.workspace }}/${{ inputs.postmanTestingReportFilename }}
       - name: Upload artifact
         uses: actions/upload-artifact@v4
