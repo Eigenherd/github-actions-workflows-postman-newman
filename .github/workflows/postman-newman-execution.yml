@@ -17,7 +17,8 @@ on:
       postmanEnvironmentId:
         description: Postman Environment Id
         type: string
-        required: true
+        required: false
+        default: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
       postmanTestingReportIterationCount:
         description: Postman Testing Report Iteration Count
         type: string
