@@ -88,6 +88,7 @@ jobs:
       - run: ls -lah 
       - run: ls -la /__w
       - run: ls -la /__w/github-actions-jobs-postman-newman-sample
+      - run: ls -la /__w/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample
       - run: ls -la /__e
       - run: ls -la /__w/_temp
       - run: ls -la /__w/_actions
