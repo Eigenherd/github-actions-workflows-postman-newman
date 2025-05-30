@@ -69,4 +69,22 @@ jobs:
       - run: echo "Running 3 build with ${{ inputs.postmanEnvironmentId }}"
       - run: echo "Running 4 build with ${{ inputs.postmanTestingReportFilename }}"
       - run: echo "Running 5 build with ${{ inputs.customerName }}"
+      - run: |
+          newman run "https://api.getpostman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}"
+          -e "https://api.getpostman.com/environments/${{ inputs.postmanEnvironmentId }}?apikey=${{ secrets.POSTMAN_API_KEY }}"
+          -r htmlextra
+          --iteration-count ${{ inputs.postmanTestingReportIterationCount }}
+          --suppress-exit-code
+          --reporter-htmlextra-showFolderDescription
+          --reporter-htmlextra-showMarkdownLinks
+          --reporter-htmlextra-title "${{ inputs.customerName }} - ${{ github.repository }} - [#${{ github.run_number }}]"
+          --reporter-htmlextra-titleSize 6
+          --reporter-htmlextra-browserTitle "${{ inputs.customerName }} - ${{ github.repository }} - [#${{ github.run_number }}]"
+          --reporter-htmlextra-hideRequestBody ${{ inputs.postmanTestingReportHideRequestBodies }}
+          --reporter-htmlextra-hideResponseBody ${{ inputs.postmanTestingReportHideResponseBodies }}
+          --reporter-htmlextra-skipEnvironmentVars ${{ inputs.postmanTestingReportSkipEnvironmentVars }}
+          --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }}
+          --reporter-htmlextra-export ${{ inputs.postmanTestingReportFilename }}
+          ${{ inputs.commandAdditionalParameters }}
+
       
