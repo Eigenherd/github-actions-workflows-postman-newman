@@ -69,9 +69,9 @@ jobs:
 #      volumes:
  #       - ${{ github.workspace }}:/__w/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample
     steps:
-      - run: echo ${{ github.workspace }}   
+      - run: echo ${{ github.workspace }}
       - run: |
-          mkdir output
+          mkdir ${{ github.workspace }}/output
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -e "https://api.postman.com/environments/${{ inputs.postmanEnvironmentId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -r htmlextra \
