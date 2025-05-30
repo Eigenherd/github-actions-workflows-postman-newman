@@ -55,7 +55,7 @@ on:
         description: Postman Newman Command Additional Parameters
         required: false
 
-        jobs:
+jobs:
   run-postman-newman:
     runs-on: ubuntu-latest
     container:
