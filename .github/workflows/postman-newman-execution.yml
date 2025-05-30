@@ -80,10 +80,4 @@ jobs:
           --reporter-htmlextra-skipEnvironmentVars ${{ inputs.postmanTestingReportSkipEnvironmentVars }} \
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }} \
           --reporter-htmlextra-export ${{ inputs.postmanTestingReportFilename }} \
-          ${{ inputs.commandAdditionalParameters }} \
-      - run: ls -la
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Postman Newman Testing Report
-          path: ${{ inputs.postmanTestingReportFilename }}
+          ${{ inputs.commandAdditionalParameters }}
