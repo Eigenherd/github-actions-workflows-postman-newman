@@ -67,9 +67,12 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}
     steps:
-      - run: echo ${{ github.workspace }}
       - run: |
-          mkdir -p ${{ github.workspace }}/output
+          echo "GITHUB_WORKSPACE=${{ github.workspace }}" >> $GITHUB_ENV
+      - run: echo ${{ github.workspace }}
+      - run: echo ${{ env.GITHUB_WORKSPACE }}
+      - run: |
+          mkdir -p ${{ env.GITHUB_WORKSPACE }}/output
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -e "https://api.postman.com/environments/${{ inputs.postmanEnvironmentId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -r htmlextra \
@@ -84,10 +87,10 @@ jobs:
           --reporter-htmlextra-hideResponseBody ${{ inputs.postmanTestingReportHideResponseBodies }} \
           --reporter-htmlextra-skipEnvironmentVars ${{ inputs.postmanTestingReportSkipEnvironmentVars }} \
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }} \
-          --reporter-htmlextra-export ${{ github.workspace }}/output/${{ inputs.postmanTestingReportFilename }} \
+          --reporter-htmlextra-export ${{ env.GITHUB_WORKSPACE }}/output/${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }}
-          find ${{ github.workspace }}/output
-      - run: chmod 644 ${{ github.workspace }}/output/${{ inputs.postmanTestingReportFilename }}
+          find ${{ env.GITHUB_WORKSPACE }}/output
+      - run: chmod 644 ${{ env.GITHUB_WORKSPACE }}/output/${{ inputs.postmanTestingReportFilename }}
       - run: echo "${PWD}"
       #- run: ls -lah /github/workspace
       - run: ls -lah ${PWD}
@@ -106,12 +109,6 @@ jobs:
       - run: ls -la /github/home
       - run: ls -la /github/workflow
       #- run: find / -name hi.txt 2>/dev/null
-      - name: Publish
-        shell: bash
-        #run: |
-        #  echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-        run: |
-          echo "GITHUB_WORKSPACE=${{ github.workspace }}" >> $GITHUB_ENV
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
