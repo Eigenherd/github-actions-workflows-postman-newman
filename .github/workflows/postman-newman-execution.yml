@@ -63,10 +63,7 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}
-      #options: --user root
     steps:
-      - run: |
-          echo "GITHUB_WORKSPACE=${{ github.workspace }}" >> $GITHUB_ENV
       - run: |
           mkdir -p /github/output
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
@@ -85,11 +82,8 @@ jobs:
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }} \
           --reporter-htmlextra-export /github/output/${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }}
-          find /github/output
-#      - run: chmod 644 /github/output/${{ inputs.postmanTestingReportFilename }}
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: Postman Newman Testing Report
-          #path: /github/output/${{ inputs.postmanTestingReportFilename }}
           path: /github/output
