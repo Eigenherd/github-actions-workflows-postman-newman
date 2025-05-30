@@ -86,5 +86,6 @@ jobs:
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }}
           --reporter-htmlextra-export ${{ inputs.postmanTestingReportFilename }}
           ${{ inputs.commandAdditionalParameters }}
+      - run: ls -la
 
       
