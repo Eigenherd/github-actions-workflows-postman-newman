@@ -66,8 +66,6 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}
-#      volumes:
- #       - ${{ github.workspace }}:/__w/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample
     steps:
       - run: echo ${{ github.workspace }}
       - run: |
