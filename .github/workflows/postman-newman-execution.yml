@@ -115,4 +115,5 @@ jobs:
         with:
           name: Postman Newman Testing Report
           #path: ${{ github.workspace }}/output/${{ inputs.postmanTestingReportFilename }}
-          path: /github/output
+          #path: /github/output
+          path: /home/runner/work/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample/output
