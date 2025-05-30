@@ -70,8 +70,8 @@ jobs:
       - run: echo "Running 4 build with ${{ inputs.postmanTestingReportFilename }}"
       - run: echo "Running 5 build with ${{ inputs.customerName }}"
       - run: |
-          newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?access_key=${{ secrets.POSTMAN_API_KEY }}"
-          -e "https://api.postman.com/environments/${{ inputs.postmanEnvironmentId }}?access_key=${{ secrets.POSTMAN_API_KEY }}"
+          newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}"
+          -e "https://api.postman.com/environments/${{ inputs.postmanEnvironmentId }}?apikey=${{ secrets.POSTMAN_API_KEY }}"
           -r htmlextra
           --iteration-count ${{ inputs.postmanTestingReportIterationCount }}
           --suppress-exit-code
@@ -87,5 +87,3 @@ jobs:
           --reporter-htmlextra-export ${{ inputs.postmanTestingReportFilename }}
           ${{ inputs.commandAdditionalParameters }}
       - run: ls -la
-
-      
