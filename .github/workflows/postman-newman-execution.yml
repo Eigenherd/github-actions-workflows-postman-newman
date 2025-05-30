@@ -73,7 +73,7 @@ jobs:
       - run: echo ${{ github.workspace }}
       - run: echo ${{ env.GITHUB_WORKSPACE }}
       - run: |
-          mkdir -p ${{ env.GITHUB_WORKSPACE }}/output
+          mkdir -p /github/output
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -e "https://api.postman.com/environments/${{ inputs.postmanEnvironmentId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -r htmlextra \
@@ -88,10 +88,10 @@ jobs:
           --reporter-htmlextra-hideResponseBody ${{ inputs.postmanTestingReportHideResponseBodies }} \
           --reporter-htmlextra-skipEnvironmentVars ${{ inputs.postmanTestingReportSkipEnvironmentVars }} \
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }} \
-          --reporter-htmlextra-export ${{ env.GITHUB_WORKSPACE }}/output/${{ inputs.postmanTestingReportFilename }} \
+          --reporter-htmlextra-export /github/output/${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }}
-          find ${{ env.GITHUB_WORKSPACE }}/output
-      - run: chmod 644 ${{ env.GITHUB_WORKSPACE }}/output/${{ inputs.postmanTestingReportFilename }}
+          find /github/output
+      - run: chmod 644 /github/output/${{ inputs.postmanTestingReportFilename }}
       - run: echo "${PWD}"
       #- run: ls -lah /github/workspace
       - run: ls -lah ${PWD}
@@ -115,5 +115,5 @@ jobs:
         with:
           name: Postman Newman Testing Report
           #path: ${{ github.workspace }}/output/${{ inputs.postmanTestingReportFilename }}
-          #path: /github/output
-          path: /home/runner/work/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample/output
+          path: /github/output
+          #path: /home/runner/work/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample/output
