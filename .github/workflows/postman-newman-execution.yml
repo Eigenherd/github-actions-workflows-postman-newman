@@ -79,7 +79,7 @@ jobs:
           --reporter-htmlextra-hideResponseBody ${{ inputs.postmanTestingReportHideResponseBodies }} \
           --reporter-htmlextra-skipEnvironmentVars ${{ inputs.postmanTestingReportSkipEnvironmentVars }} \
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }} \
-          --reporter-htmlextra-export ${{ github.workspace }}/${{ inputs.postmanTestingReportFilename }} \
+          --reporter-htmlextra-export /github/workspace/${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }} \
       - run: echo ${{ github.workspace }}
       - run: ls -la ${{ github.workspace }}
