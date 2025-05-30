@@ -94,6 +94,7 @@ jobs:
       - run: ls -la /__w/_temp
       - run: ls -la /__w/_actions
       - run: ls -la /__w/_actions/actions
+      - run: ls -la /__w/_actions/actions/upload-artifact
       - run: ls -la /__t
       - run: ls -la /github/home
       - run: ls -la /github/workflow
