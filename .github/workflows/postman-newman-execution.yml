@@ -83,6 +83,7 @@ jobs:
           ${{ inputs.commandAdditionalParameters }} \
       - run: ls -la ${{ github.workspace }}
       - run: echo ${{ github.workspace }}
+      - run: ls -lah /github/workspace
       #- run: cat ${{ github.workspace }}/${{ inputs.postmanTestingReportFilename }}
       - name: Upload artifact
         uses: actions/upload-artifact@v4
