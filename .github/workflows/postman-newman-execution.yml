@@ -66,4 +66,4 @@ jobs:
     steps:
       - run: echo "Running 1 build with ${{ inputs.postmanCollectionId }}"
       - run: echo "Running 2 build with ${{ inputs.postmanEnvironmentId }}"
-      - run: echo "Running 3 build with ${{ inputs.postmanEnvironment }}"
+      - run: echo "Running 3 build with ${{ inputs.environment }}"
