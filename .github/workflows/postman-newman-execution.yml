@@ -67,6 +67,7 @@ jobs:
         - ${{ github.workspace }}:/__w/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample
     steps:
       - run: |
+          mkdir output
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -e "https://api.postman.com/environments/${{ inputs.postmanEnvironmentId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -r htmlextra \
@@ -81,8 +82,9 @@ jobs:
           --reporter-htmlextra-hideResponseBody ${{ inputs.postmanTestingReportHideResponseBodies }} \
           --reporter-htmlextra-skipEnvironmentVars ${{ inputs.postmanTestingReportSkipEnvironmentVars }} \
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }} \
-          --reporter-htmlextra-export /github/workflow/${{ inputs.postmanTestingReportFilename }} \
-          ${{ inputs.commandAdditionalParameters }} \
+          --reporter-htmlextra-export output/${{ inputs.postmanTestingReportFilename }} \
+          ${{ inputs.commandAdditionalParameters }}
+          find ${{ github.workspace }}/output
       - run: chmod 644 /github/workflow/${{ inputs.postmanTestingReportFilename }}
       - run: echo "${PWD}"
       - run: echo ${{ github.workspace }}
@@ -111,4 +113,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Postman Newman Testing Report
-          path: /github/workflow/${{ inputs.postmanTestingReportFilename }}
+          path: ${{ github.workspace }}/${{ inputs.postmanTestingReportFilename }}
