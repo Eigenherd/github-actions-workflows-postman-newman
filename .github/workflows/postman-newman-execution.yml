@@ -66,6 +66,7 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}
+      options: --user root
     steps:
       - run: |
           echo "GITHUB_WORKSPACE=${{ github.workspace }}" >> $GITHUB_ENV
