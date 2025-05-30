@@ -82,7 +82,7 @@ jobs:
           --reporter-htmlextra-export /github/workspace/${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }} \
       - run: echo ${{ github.workspace }}
-      - run: ls -la ${{ github.workspace }}
+      #- run: ls -la ${{ github.workspace }}
       - run: ls -lah /github/workspace
       - run: ls -lah /github/home
       #- run: cat ${{ github.workspace }}/${{ inputs.postmanTestingReportFilename }}
