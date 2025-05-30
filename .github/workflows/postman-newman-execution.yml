@@ -87,7 +87,7 @@ jobs:
           --reporter-htmlextra-export ${{ github.workspace }}/output/${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }}
           find ${{ github.workspace }}/output
-      - run: chmod 644 ${{ github.workspace }}/${{ inputs.postmanTestingReportFilename }}
+      - run: chmod 644 ${{ github.workspace }}/output/${{ inputs.postmanTestingReportFilename }}
       - run: echo "${PWD}"
       #- run: ls -lah /github/workspace
       - run: ls -lah ${PWD}
