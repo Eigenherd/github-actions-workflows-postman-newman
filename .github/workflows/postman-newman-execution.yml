@@ -3,13 +3,56 @@ name: Postman Newman execution
 on:
   workflow_call:
     inputs:
+      environment:
+        description: Environment
+        type: string
+        required: true
+      commandAdditionalParameters:
+        description: Postman Newman Command Additional Parameters
+        type: string
       postmanCollectionId:
         description: Postman Collection Id
         type: string
         required: true
+      postmanEnvironmentId:
+        description: Postman Environment Id
+        type: string
+        required: true
+      postmanTestingReportIterationCount:
+        description: Postman Testing Report Iteration Count
+        type: string
+        required: true
+      postmanTestingReportHideRequestBodies:
+        description: Postman Testing Report Hide Request Bodies
+        type: string
+        required: true
+      postmanTestingReportHideResponseBodies:
+        description: Postman Testing Report Hide Response Bodies
+        type: string
+        required: true
+      postmanTestingReportSkipEnvironmentVars:
+        description: Postman Testing Report Skip Environment Variables
+        type: string
+        required: true
+      postmanTestingReportSkipHeaders:
+        description: Postman Testing Report Skip Headers
+        type: string
+        required: true
+      postmanTestingReportFilename:
+        description: Postman Testing Report Filename
+        type: string
+        required: true
+      customerName:
+        description: Customer Name
+        type: string
+        required: true
+
     secrets:
       GHCR_PAT:
         description: GHCR Personal Access Token
+        required: true
+      POSTMAN_API_KEY:
+        description: Postman API Key
         required: true
 
 jobs:
