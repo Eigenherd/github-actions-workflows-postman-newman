@@ -58,20 +58,15 @@ on:
 jobs:
   run-postman-newman:
     runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: ${{ github.workspace }}
     container:
       image: ghcr.io/eigenherd/docker-image-github-runner-postman:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}
-      options: --user root
+      #options: --user root
     steps:
       - run: |
           echo "GITHUB_WORKSPACE=${{ github.workspace }}" >> $GITHUB_ENV
-      - run: echo ${{ github.workspace }}
-      - run: echo ${{ env.GITHUB_WORKSPACE }}
       - run: |
           mkdir -p /github/output
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
@@ -91,29 +86,9 @@ jobs:
           --reporter-htmlextra-export /github/output/${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }}
           find /github/output
-      - run: chmod 644 /github/output/${{ inputs.postmanTestingReportFilename }}
-      - run: echo "${PWD}"
-      #- run: ls -lah /github/workspace
-      - run: ls -lah ${PWD}
-      - run: ls -lah 
-      - run: ls -la /
-      - run: ls -la /github
-      - run: ls -la /__w
-      - run: ls -la /__w/github-actions-jobs-postman-newman-sample
-      - run: ls -la /__w/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample
-      - run: ls -la /__e
-      - run: ls -la /__w/_temp
-      - run: ls -la /__w/_actions
-      - run: ls -la /__w/_actions/actions
-      - run: ls -la /__w/_actions/actions/upload-artifact
-      - run: ls -la /__t
-      - run: ls -la /github/home
-      - run: ls -la /github/workflow
-      #- run: find / -name hi.txt 2>/dev/null
+#      - run: chmod 644 /github/output/${{ inputs.postmanTestingReportFilename }}
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: Postman Newman Testing Report
-          #path: ${{ github.workspace }}/output/${{ inputs.postmanTestingReportFilename }}
           path: /github/output/${{ inputs.postmanTestingReportFilename }}
-          #path: /home/runner/work/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample/output
