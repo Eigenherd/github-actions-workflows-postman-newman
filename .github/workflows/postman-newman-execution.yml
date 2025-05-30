@@ -63,6 +63,8 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}
+      volumes:
+        - ${{ github.workspace }}:/__w/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample
     steps:
       - run: |
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
