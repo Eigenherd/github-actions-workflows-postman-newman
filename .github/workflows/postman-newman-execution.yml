@@ -81,7 +81,7 @@ jobs:
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }} \
           --reporter-htmlextra-export ${{ github.workspace }}/${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }} \
-      - run: ls -la /${{ github.workspace }}
+      - run: ls -la ${{ github.workspace }}
       - run: echo ${{ github.workspace }}
       - run: cat ${{ github.workspace }}/${{ inputs.postmanTestingReportFilename }}
       - name: Upload artifact
