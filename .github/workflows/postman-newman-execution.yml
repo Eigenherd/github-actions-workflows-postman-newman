@@ -64,4 +64,5 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}
     steps:
-      - run: echo "Running build with ${{ inputs.postmanCollectionId }} '${{ inputs.postmanEnvironmentId }}'"
+      - run: echo "Running #1 build with ${{ inputs.postmanCollectionId }}"
+      - run: echo "Running #2 build with ${{ inputs.postmanEnvironmentId }}"
