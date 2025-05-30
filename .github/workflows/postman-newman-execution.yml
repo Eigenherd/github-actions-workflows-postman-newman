@@ -82,8 +82,9 @@ jobs:
           --reporter-htmlextra-export ${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }} \
       - run: ls -la
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: Postman Newman Testing Report
-      #     path: ${{ inputs.postmanTestingReportFilename }}
+      - run: cat ${{ inputs.postmanTestingReportFilename }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Postman Newman Testing Report
+          path: ${{ inputs.postmanTestingReportFilename }}
