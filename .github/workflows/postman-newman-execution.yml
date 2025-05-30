@@ -71,7 +71,7 @@ jobs:
     steps:
       - run: echo ${{ github.workspace }}
       - run: |
-          mkdir ${{ github.workspace }}/output
+          mkdir -p ${{ github.workspace }}/output
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -e "https://api.postman.com/environments/${{ inputs.postmanEnvironmentId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -r htmlextra \
