@@ -3,8 +3,8 @@ name: Postman Newman execution
 on:
   workflow_call:
     inputs:
-      environment:
-        description: Environment
+      postmanEnvironment:
+        description: Postman Environment
         type: string
         required: true
       commandAdditionalParameters:
