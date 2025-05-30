@@ -64,11 +64,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}
     steps:
-      - run: echo "Running 1 build with ${{ inputs.environment }}"
-      - run: echo "Running 2 build with ${{ inputs.postmanCollectionId }}"
-      - run: echo "Running 3 build with ${{ inputs.postmanEnvironmentId }}"
-      - run: echo "Running 4 build with ${{ inputs.postmanTestingReportFilename }}"
-      - run: echo "Running 5 build with ${{ inputs.customerName }}"
       - run: |
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -e "https://api.postman.com/environments/${{ inputs.postmanEnvironmentId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
@@ -87,3 +82,8 @@ jobs:
           --reporter-htmlextra-export ${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }} \
       - run: ls -la
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Postman Newman Testing Report
+          path: ${{ inputs.postmanTestingReportFilename }}  
