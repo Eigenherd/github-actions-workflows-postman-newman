@@ -7,9 +7,6 @@ on:
         description: Postman Environment
         type: string
         required: true
-      commandAdditionalParameters:
-        description: Postman Newman Command Additional Parameters
-        type: string
       postmanCollectionId:
         description: Postman Collection Id
         type: string
@@ -54,8 +51,11 @@ on:
       POSTMAN_API_KEY:
         description: Postman API Key
         required: true
+      COMMAND_ADDITIONAL_PARAMETERS:
+        description: Postman Newman Command Additional Parameters
+        required: false
 
-jobs:
+        jobs:
   run-postman-newman:
     runs-on: ubuntu-latest
     container:
@@ -81,7 +81,7 @@ jobs:
           --reporter-htmlextra-skipEnvironmentVars ${{ inputs.postmanTestingReportSkipEnvironmentVars }} \
           --reporter-htmlextra-skipHeaders ${{ inputs.postmanTestingReportSkipHeaders }} \
           --reporter-htmlextra-export /github/output/${{ inputs.postmanTestingReportFilename }} \
-          ${{ inputs.commandAdditionalParameters }}
+          ${{ secrets.COMMAND_ADDITIONAL_PARAMETERS }}
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
