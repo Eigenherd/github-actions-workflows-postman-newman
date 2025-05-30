@@ -82,10 +82,11 @@ jobs:
           --reporter-htmlextra-export /github/workspace/${{ inputs.postmanTestingReportFilename }} \
           ${{ inputs.commandAdditionalParameters }} \
       - run: echo ${{ github.workspace }}
-      #- run: ls -la ${{ github.workspace }}
       - run: ls -lah /github/workspace
-      - run: ls -lah /github/home
-      #- run: cat ${{ github.workspace }}/${{ inputs.postmanTestingReportFilename }}
+      - name: Publish
+        shell: bash
+        run: |
+          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE" >> $GITHUB_ENV
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
