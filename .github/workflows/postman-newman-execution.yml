@@ -86,6 +86,14 @@ jobs:
       #- run: ls -lah /github/workspace
       - run: ls -lah ${PWD}
       - run: ls -lah 
+      - run: ls -la /__w
+      - run: ls -la /__w
+      - run: ls -la /__e
+      - run: ls -la /__w/_temp
+      - run: ls -la /__w/_actions
+      - run: ls -la /__t
+      - run: ls -la /github/home
+      - run: ls -la /github/workflow
       - run: find / -name hi.txt 2>/dev/null
       - name: Publish
         shell: bash
