@@ -114,4 +114,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Postman Newman Testing Report
-          path: ${{ github.workspace }}/output/${{ inputs.postmanTestingReportFilename }}
+          #path: ${{ github.workspace }}/output/${{ inputs.postmanTestingReportFilename }}
+          path: ${{ github.workspace }}/output
