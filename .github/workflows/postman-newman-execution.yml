@@ -66,6 +66,7 @@ jobs:
 #      volumes:
  #       - ${{ github.workspace }}:/__w/github-actions-jobs-postman-newman-sample/github-actions-jobs-postman-newman-sample
     steps:
+      - run: echo ${{ github.workspace }}   
       - run: |
           mkdir output
           newman run "https://api.postman.com/collections/${{ inputs.postmanCollectionId }}?apikey=${{ secrets.POSTMAN_API_KEY }}" \
@@ -87,7 +88,6 @@ jobs:
           find ${{ github.workspace }}/output
       - run: chmod 644 /github/workflow/${{ inputs.postmanTestingReportFilename }}
       - run: echo "${PWD}"
-      - run: echo ${{ github.workspace }}
       #- run: ls -lah /github/workspace
       - run: ls -lah ${PWD}
       - run: ls -lah 
