@@ -3,7 +3,7 @@ name: Postman Newman execution
 on:
   workflow_call:
     inputs:
-      postmanEnvironment:
+      environment:
         description: Postman Environment
         type: string
         required: true
