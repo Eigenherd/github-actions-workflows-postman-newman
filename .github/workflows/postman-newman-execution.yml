@@ -54,7 +54,7 @@ on:
       COMMAND_ADDITIONAL_PARAMETERS:
         description: Postman Newman Command Additional Parameters
         required: false
-      USERNAME:
+      POSTMAN_ENVIRONMENT_USERNAME:
         required: true
 
 jobs:
@@ -75,7 +75,7 @@ jobs:
           --suppress-exit-code \
           --reporter-htmlextra-showFolderDescription \
           --reporter-htmlextra-showMarkdownLinks \
-          --reporter-htmlextra-title "${{ secrets.USERNAME }} ${{ inputs.customerName }} - ${{ github.repository }} - [#${{ github.run_number }}]" \
+          --reporter-htmlextra-title "${{ secrets.POSTMAN_ENVIRONMENT_USERNAME }} ${{ inputs.customerName }} - ${{ github.repository }} - [#${{ github.run_number }}]" \
           --reporter-htmlextra-titleSize 6 \
           --reporter-htmlextra-browserTitle "${{ inputs.customerName }} - ${{ github.repository }} - [#${{ github.run_number }}]" \
           --reporter-htmlextra-hideRequestBody ${{ inputs.postmanTestingReportHideRequestBodies }} \
