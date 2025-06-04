@@ -14,7 +14,8 @@ on:
       postmanEnvironmentId:
         description: Postman Environment Id
         type: string
-        required: true
+        required: false
+        default: ${{ vars.POSTMAN_ENVIRONMENT_ID }}
       postmanTestingReportIterationCount:
         description: Postman Testing Report Iteration Count
         type: string
@@ -76,7 +77,7 @@ jobs:
           --reporter-htmlextra-showMarkdownLinks \
           --reporter-htmlextra-title "${{ inputs.customerName }} - ${{ github.repository }} - [#${{ github.run_number }}]" \
           --reporter-htmlextra-titleSize 6 \
-          --reporter-htmlextra-browserTitle "${{ vars.POSTMAN_ENVIRONMENT_ID }} ${{ inputs.customerName }} - ${{ github.repository }} - [#${{ github.run_number }}]" \
+          --reporter-htmlextra-browserTitle "${{ inputs.customerName }} - ${{ github.repository }} - [#${{ github.run_number }}]" \
           --reporter-htmlextra-hideRequestBody ${{ inputs.postmanTestingReportHideRequestBodies }} \
           --reporter-htmlextra-hideResponseBody ${{ inputs.postmanTestingReportHideResponseBodies }} \
           --reporter-htmlextra-skipEnvironmentVars ${{ inputs.postmanTestingReportSkipEnvironmentVars }} \
