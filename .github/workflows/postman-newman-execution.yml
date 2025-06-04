@@ -61,6 +61,7 @@ on:
 jobs:
   run-postman-newman:
     runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
     container:
       image: ghcr.io/eigenherd/docker-image-github-runner-postman:latest
       credentials:
