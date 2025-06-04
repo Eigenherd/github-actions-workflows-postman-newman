@@ -54,6 +54,9 @@ on:
       COMMAND_ADDITIONAL_PARAMETERS:
         description: Postman Newman Command Additional Parameters
         required: false
+      POSTMAN_ENVIRONMENT_USERNAME:
+        description: abv
+        required: true
 
 jobs:
   run-postman-newman:
